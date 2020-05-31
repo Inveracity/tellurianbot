@@ -4,9 +4,9 @@ services:
   tellurian:
     image: inveracity/tellurianbot:latest
     container_name: tellurianbot
-    build:
-      context: .
-      dockerfile: docker/tellurian.Dockerfile
+    #build:
+    #  context: .
+    #  dockerfile: docker/tellurian.Dockerfile
     command: pipenv run bot
     restart: always
     environment:
