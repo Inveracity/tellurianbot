@@ -9,5 +9,5 @@ services:
     #  dockerfile: docker/tellurian.Dockerfile
     command: pipenv run bot
     restart: always
-    environment:
-      - TELLURIAN_DISCORD_TOKEN=${TELLURIAN_DISCORD_TOKEN}
+    env_file:
+      - .env
