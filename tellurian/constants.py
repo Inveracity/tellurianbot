@@ -10,5 +10,10 @@ class Bot:
 
 class Channels:
     """Channel IDs that are relevant for this community."""
-    # sketchbook: int = 649897278374412289
-    sketchbook: int = 705109372983836672
+    sketchbook: int = 649897278374412289
+    sketchbook_comments: int = 716630834991333427
+
+
+class Webhooks:
+    """Webhook IDs that are relevant for this community."""
+    sketchbook_comments: int = 717094632089190461
