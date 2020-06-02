@@ -11,7 +11,7 @@ log = logging.getLogger(__name__)
 # Initialize the bot
 bot = Bot(
     command_prefix=when_mentioned_or(constants.Bot.prefix),  # Invoked commands must have this prefix
-    activity=discord.Game(name="Tellurian Systems Inc."),
+    activity=discord.Game(name="blast beats at 240 BPM"),
     case_insensitive=True,
     max_messages=10_000,
 )
