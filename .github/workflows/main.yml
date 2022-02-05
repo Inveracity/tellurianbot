@@ -13,14 +13,20 @@ jobs:
       # Check out master branch
       - uses: actions/checkout@master
 
-      # Build and publish the docker image
-      - name: Publish to DockerHub
-        uses: elgohr/Publish-Docker-Github-Action@master
+      # Log in to dockerhub
+      - name: Login to DockerHub
+        uses: docker/login-action@v1
         with:
-          name: inveracity/tellurianbot:latest
           username: ${{ secrets.dockerhub_username }}
           password: ${{ secrets.dockerhub_password }}
-          dockerfile: docker/tellurian.Dockerfile
+
+        name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: docker/tellurian.Dockerfile
+          push: true
+          tags: inveracity/tellurianbot:latest
 
       # Deploy via Hoplite
       - name: Send a webhook to Hoplite
