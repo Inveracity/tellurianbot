@@ -20,7 +20,8 @@ jobs:
           username: ${{ secrets.dockerhub_username }}
           password: ${{ secrets.dockerhub_password }}
 
-        name: Build and push
+      # Build and publish
+      - name: Build and push
         uses: docker/build-push-action@v2
         with:
           context: .
