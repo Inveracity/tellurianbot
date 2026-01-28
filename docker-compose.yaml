@@ -1,13 +1,11 @@
-version: '3.7'
-
 services:
   tellurian:
     image: inveracity/tellurianbot:latest
     container_name: tellurianbot
-    #build:
-    #  context: .
-    #  dockerfile: docker/tellurian.Dockerfile
-    command: pipenv run bot
-    restart: always
+    build:
+      context: .
+      dockerfile: docker/tellurian.Dockerfile
+    command: uv run python -m tellurian
+    restart: unless-stopped
     env_file:
       - .env

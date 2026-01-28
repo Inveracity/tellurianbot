@@ -1,15 +1,14 @@
-FROM python:3.8-slim-buster
+FROM python:3.12-alpine3.23
 
 ENV PIPENV_VENV_IN_PROJECT=1
 ENV PIPENV_IGNORE_VIRTUALENVS=1
 ENV PIPENV_NOSPIN=1
 ENV PIPENV_HIDE_EMOJIS=1
 
-RUN pip install pipenv
 
 RUN mkdir -p /tellurian
 COPY . /tellurian
 WORKDIR /tellurian
-RUN pipenv install
+RUN uv sync
 
-CMD ["pipenv", "run", "bot"]
+CMD ["uv", "run", "python", "-m", "tellurian"]

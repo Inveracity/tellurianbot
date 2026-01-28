@@ -21,16 +21,18 @@ class Sketchbook(Cog):
     async def _send_webhook(self, content: str, username: str, avatar_url: str) -> None:
         """Send a webhook to the #sketchbook-comments channel."""
         if self.webhook is None:
-            self.webhook = await self.bot.fetch_webhook(constants.Webhooks.sketchbook_comments)
+            self.webhook = await self.bot.fetch_webhook(
+                constants.Webhooks.sketchbook_comments
+            )
 
         try:
             await self.webhook.send(
-                content=content,
-                username=username,
-                avatar_url=avatar_url
+                content=content, username=username, avatar_url=avatar_url
             )
         except discord.HTTPException:
-            log.exception("Failed to send a message to the #sketchbook-comments webhook.")
+            log.exception(
+                "Failed to send a message to the #sketchbook-comments webhook."
+            )
 
     @staticmethod
     def _bad_sketch(msg: Message) -> bool:
@@ -67,16 +69,16 @@ class Sketchbook(Cog):
         await self._send_webhook(
             content=message.content,
             username=message.author.display_name,
-            avatar_url=message.author.avatar_url
+            avatar_url=message.author.avatar_url,
         )
         await message.delete()
 
 
-def setup(bot: Bot) -> None:
+async def setup(bot: Bot) -> None:
     """
     This function is called automatically when this cog is loaded by the bot.
 
     It's only purpose is to load the cog above, and to pass the Bot instance into it.
     """
-    bot.add_cog(Sketchbook(bot))
+    await bot.add_cog(Sketchbook(bot))
     log.info("Cog loaded: Sketchbook")
