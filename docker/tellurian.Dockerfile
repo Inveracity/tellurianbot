@@ -1,10 +1,10 @@
 FROM python:3.12-alpine3.23
 
-ENV PIPENV_VENV_IN_PROJECT=1
-ENV PIPENV_IGNORE_VIRTUALENVS=1
-ENV PIPENV_NOSPIN=1
-ENV PIPENV_HIDE_EMOJIS=1
+RUN apk add --no-cache curl ca-certificates
+ADD https://astral.sh/uv/install.sh /uv-installer.sh
+RUN sh /uv-installer.sh && rm /uv-installer.sh
 
+ENV PATH="/root/.local/bin/:$PATH"
 
 RUN mkdir -p /tellurian
 COPY . /tellurian
